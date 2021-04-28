@@ -42,11 +42,11 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
         if(result.on_sale[0] === "Yes" ) {
           resultTemplate += `
             <div class="grid-item">
-              <img class="item-img" src="${ result.imageUrl }" />
+              <img class="item-img" src="${ result.thumbnailImageUrl }" />
               <div class="item-info">
                 <p class="item-name">${ result.name }</p>
-                <p><span class="item-og-price">$${( result.price * 1 ).toFixed(2)}</span>
-                <span class="current-price">$${( result.sale_price[0] * 1 ).toFixed(2)}</span>
+                <p><span class="item-og-price">$${( result.msrp * 1 ).toFixed(2)}</span>
+                <span class="current-price">$${( result.price * 1 ).toFixed(2)}</span>
                 </p>
               </div>  
             </div> 

@@ -2,6 +2,7 @@
 .grid {
   grid-template-columns: auto;
   display: grid;
+  position: relative;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -9,11 +10,17 @@
   }
 
 .grid-item {
+  
   display: flex;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   grid-column-start: 1;
   grid-column-end: 2;
+
+  background-color: #ffffff7a;
+  padding: 10px 10px;
+  border-radius: 10px;
 }
 
 

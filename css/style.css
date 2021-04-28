@@ -1,5 +1,23 @@
+.background {
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (max-width: 1024px) { 
+  img.background {
+    left: 50%;
+    margin-left: -512px; 
+  }
+}
+
 #search-cont {
   display: flex;
+  position: relative;
 }
 
 #search-input {
@@ -28,6 +46,7 @@
 }
 
 .item-info {
+  height: 100%;
   width: 250px;
   padding: 10px 20px;
   text-align: center;
@@ -41,6 +60,7 @@
 /* PAGINATION */
 #pagination-cont {
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
   height: 30px;
@@ -52,6 +72,12 @@
   width: 40px;
   height: 20px;
   
+}
+
+.pagination-btn {
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid black;
 }
 
 #page-number {
