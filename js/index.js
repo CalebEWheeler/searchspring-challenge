@@ -17,6 +17,10 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
         .then(data => { 
           console.log(data);
           
+          //If the totalPages are greater than 1
+          let pagination = data.pagination;
+          if(pagination.totalPages > 1) showPaginationLogic( pagination );
+
           createItemTemplate( data );
           resolve( data );
         })
@@ -27,7 +31,8 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
     })
   };
 
-  //Function that takes in the retrieved data and loops through and builds an HTML template for each result that is then injected into my grid element
+
+//Function that takes in the retrieved data and loops through and builds an HTML template for each result that is then injected into my grid element
   const createItemTemplate = ( data ) => {
     
     let results = data.results;
@@ -62,6 +67,25 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
       $('#result-cont').html(resultTemplate);
   }
 
+  //This function will first display the pagination container, set the values of the pagination elements, then go through various conditionals to properly hide and show the pagination elements depending on the values of the previousPage, currentPage, and nextPage values retrieved from the API
+  const showPaginationLogic = ( pagination ) => {
+
+    $('#pagination-cont').show();
+    $('#previous-page').hide();
+
+    //Here I set the values of the pagination elements
+    $('#previous-page').val(pagination.previousPage);
+    $('#page-number').val(pagination.currentPage).text(pagination.currentPage);
+    $('#next-page').val(pagination.nextPage);
+
+    //Conditionals to handle hiding and showing the 'previous-page and 'next-page' pagination buttons depending on values retrieved from the API
+    if(pagination.previousPage !== 0) $('#previous-page').show();
+
+    $('#next-page').show();
+    if(pagination.nextPage === 0) $('#next-page').hide();
+    
+  }
+
 $(document).ready(() => {
 
 
@@ -82,6 +106,19 @@ $(document).ready(() => {
     getItems( searchInput, 1 );
   })
 
+
+  //Pagination handling
+  $('#previous-page').click(() => {
+    let currentPage = ( $('#page-number').val() * 1);
+    currentPage--;
+    getItems( searchInput, currentPage );
+  })
+
+  $('#next-page').click(() => {
+    let currentPage = ( $('#page-number').val() * 1);
+    currentPage++;
+    getItems( searchInput, currentPage );
+  })
 
 })  
   
