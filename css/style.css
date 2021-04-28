@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+/* SET BACKGROUND IMAGE */
 .background {
   min-height: 100%;
   min-width: 1024px;
@@ -6,6 +9,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  opacity: 0.75;
 }
 
 @media screen and (max-width: 1024px) { 
@@ -15,15 +19,55 @@
   }
 }
 
+/* Navbar */
+navbar {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  border-bottom: 5px dotted black;
+
+  background: url(../img/pexels-tyler-lastovich-412681.jpg);
+  background-size: 100%;
+}
+
+.logo {
+  height: 200px;
+}
+
 #search-cont {
   display: flex;
+  justify-content: space-between;
+  align-self: center;
+  align-items: center;
+  height: 100px;
+  width: 80%;
   position: relative;
+  padding: 0 40px;
+  border-radius: 50px 0 0 50px;
+  background-color: #f9e2c3;
+}
+
+#search-cont>a {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 38px;
+    width: 120px;
+    border-radius: 50px;
+    border: 2px solid #bd6d003d;
+  font-family: 'Lobster', cursive;
+  font-size: 18px;
+    font-weight: 500;
+    color: black;
 }
 
 #search-input {
-  border: 2px solid black;
-  border-radius: 25px;
-  padding: 5px 10px;
+  border: 2px solid #bd6d003d;
+    border-radius: 25px;
+    padding: 5px 10px;
 }
 
 #search-submit {
@@ -35,11 +79,33 @@
   right: 45px;
 }
 
-/* #search-submit:focus {
-  outline: none;
-  border-radius: 100%;
-  border: solid rgb(94, 158, 214) 2px;
-} */
+.cart {
+  display: flex;
+  padding: 6px;
+  border: 1px solid lightgrey;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.fa-shopping-cart {
+  font-size: 25px;
+  color: #007bff;
+}
+
+.cart-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  font-size: 14px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  position: absolute;
+  right: 30px;
+  top: 20px;
+}
 
 .item-img {
   width: 250px;
@@ -52,9 +118,24 @@
   text-align: center;
 }
 
+.item-name {
+  height: 48px;
+}
+
 .item-og-price {
   text-decoration: line-through;
   color: grey;
+}
+
+.fa-plus-circle {
+  border-radius: 100px;
+  font-size: 20px;
+  color: rgb(2, 161, 2);
+  transition: transform .2s ease;
+}
+
+.fa-plus-circle:hover {
+  transform: scale(1.2);
 }
 
 /* PAGINATION */

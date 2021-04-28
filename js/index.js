@@ -45,9 +45,12 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
               <img class="item-img" src="${ result.thumbnailImageUrl }" />
               <div class="item-info">
                 <p class="item-name">${ result.name }</p>
-                <p><span class="item-og-price">$${( result.msrp * 1 ).toFixed(2)}</span>
-                <span class="current-price">$${( result.price * 1 ).toFixed(2)}</span>
-                </p>
+                <div class="d-flex>
+                  <p><span class="item-og-price">$${( result.msrp * 1 ).toFixed(2)}</span>
+                  <span class="current-price">$${( result.price * 1 ).toFixed(2)}</span>
+                  </p>
+                  <i class="fas fa-plus-circle add-to-cart"></i> 
+                </div>   
               </div>  
             </div> 
           `;
@@ -58,7 +61,10 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
             <img class="item-img" src="${ result.imageUrl }" />
             <div class="item-info">
               <p class="item-name">${ result.name }</p>
-              <p class="current-price">$${( result.price * 1 ).toFixed(2)}</p>
+              <div class="d-flex>
+                <p class="current-price">$${( result.price * 1 ).toFixed(2)}</p>
+                <i class="fas fa-plus-circle add-to-cart"></i>
+              </div>
             </div>  
           </div>  
         `;
@@ -120,5 +126,22 @@ $(document).ready(() => {
     getItems( searchInput, currentPage );
   })
 
-})  
+}) 
+
+
+//Cart functionality
+let itemsInCart = 0;
+$(document).on('click', '.add-to-cart', () => {
+  //onclick add a value of 1 to the 'span' element with the parent element that has a class of cart and allow it to increment with each click. Also add the class of 'cart-count' if the value is 0.
+
+  itemsInCart++;
+  $('#cart-count').attr('class', 'cart-count').text(itemsInCart);
+})
   
+$(document).on('click', '.cart', () => {
+  
+})
+$('#clear-cart').click(() => {
+  itemsInCart = 0;
+  $('#cart-count').removeAttr('class', 'cart-count').text("");
+})

@@ -3,6 +3,7 @@
   grid-template-columns: auto;
   display: grid;
   position: relative;
+  padding-top: 186px;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -10,7 +11,7 @@
   }
 
 .grid-item {
-  
+
   display: flex;
   height: 100%;
   flex-direction: column;
