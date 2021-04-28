@@ -1,0 +1,132 @@
+/* default sizing for mobile view */
+.grid {
+  grid-template-columns: auto;
+  display: grid;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 30px;
+  }
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+
+/* Override for tablet sized views */
+@media (min-width: 650px) {
+
+  .grid {
+    grid-template-columns: auto auto;
+  }
+
+  .grid-item:nth-child( odd ) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .grid-item:nth-child( even ) {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
+}
+
+/* Override for small desktop views  */
+@media (min-width: 1024px) {
+
+  .grid {
+    grid-template-columns: auto auto auto;
+  }
+
+  .grid-item:nth-child( 3n + 1 ) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .grid-item:nth-child( 3n + 2 ) {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
+  .grid-item:nth-child( 3n + 3 ) {
+    grid-column-start: 3;
+    grid-column-end: 4;
+  }
+
+}
+
+/* Override for normal desktop views */
+@media only screen and (min-width: 1440px) {
+
+  .grid {
+    grid-template-columns: auto auto auto auto;
+  }
+
+  .grid-item:nth-child( 4n + 1 ) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .grid-item:nth-child( 4n + 2 ) {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
+  .grid-item:nth-child( 4n + 3 ) {
+    grid-column-start: 3;
+    grid-column-end: 4;
+  }
+
+  .grid-item:nth-child( 4n + 4 ) {
+    grid-column-start: 4;
+    grid-column-end: 5;
+  }
+}
+
+/* Override for 4k desktop views */
+@media only screen and (min-width: 2560px) {
+
+  .grid {
+    grid-template-columns: auto auto auto auto auto auto auto;
+  }
+
+  .grid-item:nth-child( 7n + 1 ) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .grid-item:nth-child( 7n + 2 ) {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
+  .grid-item:nth-child( 7n + 3 ) {
+    grid-column-start: 3;
+    grid-column-end: 4;
+  }
+
+  .grid-item:nth-child( 7n + 4 ) {
+    grid-column-start: 4;
+    grid-column-end: 5;
+  }
+
+  .grid-item:nth-child( 7n + 5 ) {
+    grid-column-start: 5;
+    grid-column-end: 6;
+  }
+
+  .grid-item:nth-child( 7n + 6 ) {
+    grid-column-start: 6;
+    grid-column-end: 7;
+  }
+
+  .grid-item:nth-child( 7n + 7 ) {
+    grid-column-start: 7;
+    grid-column-end: 8;
+  }
+}
