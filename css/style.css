@@ -52,7 +52,7 @@ navbar {
   background-color: #f9e2c3;
 }
 
-navbar>a {
+#search-cont>a {
   display: flex;
     justify-content: center;
     align-items: center;
@@ -89,30 +89,40 @@ navbar>a {
 
 .cart {
   display: flex;
+  width: 75px;
   padding: 6px;
-  border: 1px solid lightgrey;
   border-radius: 8px;
-  background-color: white;
+  transition: transform .2s ease;
+}
+
+.cart:hover {
+  transform: scale(1.1);
 }
 
 .fa-shopping-cart {
-  font-size: 25px;
-  color: #007bff;
+  font-size: 35px;
+  color: #32393a;
+  text-shadow: 0px 0px 5px white;
 }
 
 .cart-count {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 24px;
-  width: 24px;
-  font-size: 14px;
-  border-radius: 50%;
-  background-color: red;
-  color: white;
-  position: absolute;
-  right: 30px;
-  top: 20px;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    width: 24px;
+    font-size: 14px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    position: relative;
+    right: 8px;
+    bottom: 12px;
+    transition: transform .2s ease;
+}
+
+.cart-count:hover {
+  transform: scale(1.1);
 }
 
 
