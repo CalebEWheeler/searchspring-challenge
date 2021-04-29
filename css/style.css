@@ -44,7 +44,7 @@ navbar {
 
 #search-cont {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   height: 100px;
   width: 100%;
@@ -61,12 +61,13 @@ navbar {
     justify-content: center;
     align-items: center;
     background-color: white;
+    margin: 5px;
     height: 38px;
     width: 120px;
     border-radius: 50px;
     border: 2px solid #bd6d003d;
-  font-family: 'Lobster', cursive;
-  font-size: 18px;
+    font-family: 'Lobster', cursive;
+    font-size: 18px;
     font-weight: 500;
     color: black;
     transition: transform .2s ease;  
