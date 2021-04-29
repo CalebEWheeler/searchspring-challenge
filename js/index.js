@@ -20,7 +20,6 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
           //If the totalPages are greater than 1
           let pagination = data.pagination;
           if(pagination.totalPages > 1) showPaginationLogic( pagination );
-
           createItemTemplate( data );
           resolve( data );
         })
@@ -75,6 +74,7 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
         }
       }
       $('#result-cont').html(resultTemplate);
+      window.scroll({top: 0});
   }
 
   //This function will first display the pagination container, set the values of the pagination elements, then go through various conditionals to properly hide and show the pagination elements depending on the values of the previousPage, currentPage, and nextPage values retrieved from the API
@@ -116,7 +116,6 @@ $(document).ready(() => {
     getItems( searchInput, 1 );
   })
 
-
   //Pagination handling
   $('#previous-page').click(() => {
     let currentPage = ( $('#page-number').val() * 1);
@@ -129,6 +128,7 @@ $(document).ready(() => {
     currentPage++;
     getItems( searchInput, currentPage );
   })
+  
 
 }) 
 
@@ -141,11 +141,6 @@ $(document).on('click', '.add-to-cart', () => {
   itemsInCart++;
   $('#cart-count').attr('class', 'cart-count').text(itemsInCart);
 })
-  
-$(document).on('click', '.cart', () => {
-  
-})
-
 
 $('#clear-cart').click(() => {
   itemsInCart = 0;
