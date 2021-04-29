@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat&display=swap');
 
 html {
   scroll-behavior: smooth;
@@ -62,7 +62,7 @@ navbar {
     background-color: #f9e2c3;
 }
 
-#search-term-cont>a {
+.search-term {
   display: none;
 }
 
@@ -72,8 +72,9 @@ navbar {
   transition: transform .2s ease;
 }
 
-#search-term-cont>a:hover, 
+.search-term:hover, 
 #search-input-cont:hover {
+  text-decoration: none;
   transform: scale(1.05);
 }
 
@@ -175,6 +176,27 @@ navbar {
   transform: scale(1.2);
 }
 
+
+#msg-cont {
+  position: relative;
+  padding-top: 150px;
+}
+
+.msg {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+.did-you-mean {
+  color: blue;
+  transition: transform .2s ease;
+}
+
+.did-you-mean:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 /* PAGINATION */
 #pagination-cont {
   display: flex;
@@ -246,7 +268,7 @@ navbar {
     left: 25px;
   }
 
-  #search-term-cont>a {
+  .search-term {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -262,7 +284,7 @@ navbar {
     transition: transform .2s ease;  
   }
 
-  #search-term-cont>a:nth-child(5n + 5) {
+  .search-term:nth-child(5n + 5) {
     display: none;
   }
 
@@ -277,13 +299,13 @@ navbar {
     left: 0;
   }
 
-  #search-term-cont>a {
+  .search-term {
     margin: 10px;
     height: 50px;
     width: 145px;
   }
 
-  #search-term-cont>a:nth-child(5n + 5) {
+  .search-term:nth-child(5n + 5) {
     display: flex;
   }
 

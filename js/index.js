@@ -5,7 +5,7 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
 
   //create promise
   const getItems = ( query, pageNumber ) => {
-    
+    console.log(query);
     return new Promise(( resolve ) => {
 
       fetch(baseUrl + '?' + new URLSearchParams({
@@ -20,7 +20,9 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
           //If the totalPages are greater than 1
           let pagination = data.pagination;
           if(pagination.totalPages > 1) showPaginationLogic( pagination );
-          createItemTemplate( data );
+
+
+          createItemTemplate( query, data );
           resolve( data );
         })
         .catch(error => {
@@ -31,11 +33,32 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
   };
 
 
+const generateMessage = ( query, data ) => {
+  let message = "";
+  
+  if(data.results.length === 0) {
+      let didYouMean = data.didYouMean.query;
+
+      message +=  `
+        <h4 class="msg">We didn't find any results for ${query}, did you mean <span class="did-you-mean" value="${didYouMean}">"${didYouMean}"</span>?</h4>
+      `;
+    }
+    else {
+      message += `
+      <h4 class="msg">Search results for ${data.breadcrumbs[0].filterValue}</h4>
+      `
+    }
+    $('#msg-cont').html(message);
+}   
+
+
 //Function that takes in the retrieved data and loops through and builds an HTML template for each result that is then injected into my grid element
-  const createItemTemplate = ( data ) => {
+  const createItemTemplate = ( query, data ) => {
     
     let results = data.results;
-    let resultTemplate;
+    let resultTemplate = "";
+
+    generateMessage( query, data ); 
 
       for(let result of results) {
         if(result.on_sale[0] === "Yes" ) {
@@ -98,6 +121,8 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
 
 $(document).ready(() => {
 
+  //Default items displayed on page on load
+
 
   //Event listener to register when a user clicks enter in the search input field to search for items
   $('#search-input').keyup((event) => {
@@ -116,6 +141,13 @@ $(document).ready(() => {
     getItems( searchInput, 1 );
   })
 
+  //Handle other searches based on click events on defined tab values in the navbar
+  $(document).on("click", ".search-term", function() {
+    searchInput = $(this).data("id");
+    $('#search-input').val(searchInput);
+    getItems( searchInput, 1 );
+  });
+
   //Pagination handling
   $('#previous-page').click(() => {
     let currentPage = ( $('#page-number').val() * 1);
@@ -129,8 +161,12 @@ $(document).ready(() => {
     getItems( searchInput, currentPage );
   })
   
+  
 
 }) 
+
+
+
 
 
 //Cart functionality
