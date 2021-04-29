@@ -45,7 +45,7 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
               <img class="item-img" src="${ result.thumbnailImageUrl }" />
               <div class="item-info">
                 <p class="item-name">${ result.name }</p>
-                <div class="d-flex>
+                <div class="d-flex">
                   <p><span class="item-og-price">$${( result.msrp * 1 ).toFixed(2)}</span>
                   <span class="current-price">$${( result.price * 1 ).toFixed(2)}</span>
                   </p>
@@ -61,9 +61,13 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
             <img class="item-img" src="${ result.imageUrl }" />
             <div class="item-info">
               <p class="item-name">${ result.name }</p>
-              <div class="d-flex>
-                <p class="current-price">$${( result.price * 1 ).toFixed(2)}</p>
-                <i class="fas fa-plus-circle add-to-cart"></i>
+              <div class="d-flex">
+                <p class="current-price">
+                $${( result.price * 1 ).toFixed(2)}
+                </p>
+                <div class="add-to-cart">
+                  <i class="fas fa-plus-circle"></i>
+                </div>  
               </div>
             </div>  
           </div>  
@@ -141,6 +145,8 @@ $(document).on('click', '.add-to-cart', () => {
 $(document).on('click', '.cart', () => {
   
 })
+
+
 $('#clear-cart').click(() => {
   itemsInCart = 0;
   $('#cart-count').removeAttr('class', 'cart-count').text("");
