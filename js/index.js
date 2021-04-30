@@ -98,9 +98,17 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
       }
     }
     else {
-      if(data.results.length === 0) {
-        let didYouMean = data.didYouMean.query;
+      
+      
 
+      if(data.results.length === 0 && Object.keys(data).includes('didYouMean') === false) {
+        message += `
+          <h4 class="msg">Sorry we didn't find any results for ${query}, try searching a different value...
+        `;
+      }
+      else if(data.results.length === 0) {
+        
+        let didYouMean = data.didYouMean.query;
         message +=  `
           <h4 class="msg">We didn't find any results for ${query}, did you mean <span class="did-you-mean" data-id="${didYouMean}">"${didYouMean}"</span>?</h4>
         `;
