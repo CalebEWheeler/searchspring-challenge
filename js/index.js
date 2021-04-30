@@ -21,7 +21,6 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
           let pagination = data.pagination;
           if(pagination.totalPages > 1) showPaginationLogic( pagination );
 
-
           createItemTemplate( query, data );
           resolve( data );
         })
@@ -135,6 +134,22 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
     
   }
 
+  const generatePagination =() => {
+    return `
+      <div>
+        <button class="pagination-btn previous-page"><i class="fas fa-chevron-left"></i><Previous Page></button>
+      </div>
+
+      <div>
+        <p class="page-number"></p>
+      </div>
+  
+      <div>
+      <button class="pagination-btn next-page"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    `;
+  }
+
 //These functions and event listeners are made available after the document is in a ready state  
 $(document).ready(() => {
 
@@ -143,7 +158,9 @@ $(document).ready(() => {
     searchInput = '#beach#!';
     $('#search-input').val("");
     getItems( searchInput, 1 );
-    
+
+    //Will inject the pagination template to HTML
+    $('.pagination-cont').html(generatePagination());
   }
   homepage();
 

@@ -11,60 +11,52 @@
   <title>SearchSpring App</title>
 </head>
 <body>
+  
+  <!-- Background Image -->
   <img src="img/pexels-tyler-lastovich-412681.jpg" class="background">
 
-  <navbar class="">
+  <!-- Navbar -->
+  <navbar>
     <img src="img/island-native.png" alt="logo" class="logo">
     
-
+    <!-- Container for search tabs -->
     <div id="search-cont">
       <div id="search-term-cont">
         <button class="search-term" data-id="hats">Hats</button>
-
         <button class="search-term" data-id="swimsuit">Swimwear</button>
         <button class="search-term" data-id="sunglasses">Sunglasses</button>
         <button class="search-term" data-id="sandals">Sandals</button>
         <button class="search-term" data-id="sale">Sale</button>
       </div>
       
+      <!-- Search Input -->
       <div id="search-input-cont">
         <input id="search-input" type="text" placeholder="Search...">
-      <button id="search-submit">
-        <i class="fas fa-search"></i>
-      </button>
+        <button id="search-submit">
+          <i class="fas fa-search"></i>
+        </button>
       </div>
+
+      <!-- Cart -->
       <div class="cart">
         <i class="fas fa-shopping-cart"></i>
         <span id="cart-count" class=""span>
-      </div>
-      
-      
+      </div> 
     </div>
-
   </navbar>
   
   
-  
+  <!-- Display message -->
   <div id="msg-cont"></div>
-  <div id="result-cont" class="grid" >
-
-  </div>
-
 
   <!-- Pagination & Page Number -->
-  <div class="pagination-cont">
-    <div>
-      <button class="pagination-btn previous-page"><i class="fas fa-chevron-left"></i><Previous Page></button>
-    </div>
+  <div class="pagination-cont"></div>
 
-    <div>
-      <p class="page-number"></p>
-    </div>
-    
-    <div>
-      <button class="pagination-btn next-page"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
+  <!-- Returned Result Container -->
+  <div id="result-cont" class="grid"></div>
+
+  <!-- Pagination & Page Number -->
+  <div class="pagination-cont"></div>
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
