@@ -162,11 +162,32 @@
 
   .item-name {
     height: 48px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .cart-price-cont {
+    display: flex;
+
+  }
+
+  .price {
+    align-self: center;
+    margin: 0;
   }
 
   .item-og-price {
+    font-family: 'Montserrat', sans-serif;
     text-decoration: line-through;
     color: grey;
+  }
+
+  .current-price {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .sale-price {
+    font-family: 'Montserrat', sans-serif;
+    color: red;
   }
 
   .add-to-cart {

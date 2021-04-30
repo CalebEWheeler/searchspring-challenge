@@ -5,7 +5,7 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
 
   //create promise
   const getItems = ( query, pageNumber ) => {
-    console.log(query);
+    
     return new Promise(( resolve ) => {
       
       fetch(baseUrl + '?' + new URLSearchParams({
@@ -15,10 +15,11 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
         siteId: 'scmq7n'
       })).then(response => response.json())
         .then(data => { 
-          console.log(data);
           
           //If the totalPages are greater than 1
           let pagination = data.pagination;
+          
+          $('.pagination-cont').hide();
           if(pagination.totalPages > 1) showPaginationLogic( pagination );
 
           createItemTemplate( query, data );
@@ -50,9 +51,9 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
               <img class="item-img" src="${ result.thumbnailImageUrl }" />
               <div class="item-info">
                 <p class="item-name">${ result.name }</p>
-                <div class="d-flex">
-                  <p><span class="item-og-price">$${( result.msrp * 1 ).toFixed(2)}</span>
-                  <span class="current-price">$${( result.price * 1 ).toFixed(2)}</span>
+                <div class="cart-price-cont">
+                  <p class="price"><span class="item-og-price">$${( result.msrp * 1 ).toFixed(2)}</span>
+                  <span class="sale-price">$${( result.price * 1 ).toFixed(2)}</span>
                   </p>
                   <i class="fas fa-plus-circle add-to-cart"></i> 
                 </div>   
@@ -98,9 +99,6 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
       }
     }
     else {
-      
-      
-
       if(data.results.length === 0 && !Object.keys(data).includes('didYouMean')) {
         message += `
           <h4 class="msg">Sorry we didn't find any results for ${query}, try searching a different value...
