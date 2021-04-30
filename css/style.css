@@ -190,7 +190,7 @@ navbar {
     padding: 10px 20px;
     border-radius: 10px;
     border: 2px solid #0000002b;
-    background-color: rgb(255 255 255 / 67%);
+    background-color: rgb(255 255 255 / 80%);
 }
 
 .did-you-mean {
@@ -206,30 +206,48 @@ navbar {
 /* PAGINATION */
 .pagination-cont {
   display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  height: 30px;
-  
+    position: relative;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 45px;
+    width: 63%;
+    margin: 20px auto;
 }
 
 .pagination-cont>div {
-  text-align: center;
-  width: 40px;
-  height: 20px;
+  height: 100%;
+}
+
+.prev-next-cont {
+  width: 45px;
+  border-radius: 12px;
+  transition: transform .2s ease;
+}
+
+.prev-next-cont:hover {
+  background-color:rgb(255 255 255 / 100%);
   
+  transform: scale(1.1);
 }
 
 .pagination-btn {
-  background-color: transparent;
-  border-radius: 5px;
-  border: 2px solid black;
+  width: 45px;
+    height: 100%;
+    background-color: rgb(255 255 255 / 80%);
+    border-radius: 12px;
+    border: 2px solid #0000002b;
 }
 
 .page-number {
   margin: 0;
+  padding: 5px;
+  text-align: center;
   height: 100%;
-  width: 100%;
+  background-color: rgb(255 255 255 / 80%);
+  border-radius: 12px;
+  border: 2px solid #0000002b;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
 }
 
 @media (min-width: 768px) {
@@ -309,6 +327,22 @@ navbar {
   .msg {
     margin: 0 72px;
   }
+
+  .pagination-cont {
+    width: 60%;
+  }
+
+  .prev-next-cont {
+    width: 60px;
+  }
+
+  .pagination-btn {
+    width: 100%;
+  }
+
+  .page-number {
+    width: 130px;
+  }
 }
 
 @media (min-width: 1440px) {
@@ -337,5 +371,9 @@ navbar {
 
   .msg {
     margin: 0 125px;
+  }
+
+  .pagination-cont {
+    width: 40%;
   }
 }

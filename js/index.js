@@ -123,7 +123,7 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
 
     //Here I set the values of the pagination elements
     $('.previous-page').val(pagination.previousPage);
-    $('.page-number').val(pagination.currentPage).text(pagination.currentPage);
+    $('.page-number').val(pagination.currentPage).text(`Page ${pagination.currentPage}`);
     $('.next-page').val(pagination.nextPage);
 
     //Conditionals to handle hiding and showing the 'previous-page and 'next-page' pagination buttons depending on values retrieved from the API
@@ -136,7 +136,7 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
 
   const generatePagination =() => {
     return `
-      <div>
+      <div class="prev-next-cont">
         <button class="pagination-btn previous-page"><i class="fas fa-chevron-left"></i><Previous Page></button>
       </div>
 
@@ -144,7 +144,7 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
         <p class="page-number"></p>
       </div>
   
-      <div>
+      <div class="prev-next-cont">
       <button class="pagination-btn next-page"><i class="fas fa-chevron-right"></i></button>
       </div>
     `;
