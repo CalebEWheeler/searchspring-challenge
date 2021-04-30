@@ -7,9 +7,9 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
   const getItems = ( query, pageNumber ) => {
     console.log(query);
     return new Promise(( resolve ) => {
-
+      
       fetch(baseUrl + '?' + new URLSearchParams({
-        q: query,
+        q: searchInput,
         resultsFormat: 'native',
         page: pageNumber,
         siteId: 'scmq7n'
@@ -23,6 +23,7 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
 
 
           createItemTemplate( query, data );
+          
           resolve( data );
         })
         .catch(error => {
@@ -80,7 +81,7 @@ const generateMessage = ( query, data ) => {
         else {
         resultTemplate += `
           <div class="grid-item">
-            <img class="item-img" src="${ result.imageUrl }" />
+            <img class="item-img" src="${ result.imageUrl }" onError="this.onerror=null;this.src='img/img-not-avail.png';"/>
             <div class="item-info">
               <p class="item-name">${ result.name }</p>
               <div class="d-flex">
@@ -119,11 +120,21 @@ const generateMessage = ( query, data ) => {
     
   }
 
+  
 $(document).ready(() => {
 
   //Default items displayed on page on load
+  const homepage = () => {
+    searchInput = 'beach';
+    $('#search-input').val("");
+    getItems( searchInput, 1 );
+  }
 
+  homepage();
 
+  $('.logo').click(() => {
+    homepage();
+  })
   //Event listener to register when a user clicks enter in the search input field to search for items
   $('#search-input').keyup((event) => {
     //Hide pagination-cont for when a user makes another search
