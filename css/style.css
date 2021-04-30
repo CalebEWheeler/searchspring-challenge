@@ -184,7 +184,13 @@ navbar {
 
 .msg {
   font-family: 'Montserrat', sans-serif;
-  text-align: center;
+    font-size: 1.35em;
+    text-align: center;
+    margin: 0 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #0000002b;
+    background-color: rgb(255 255 255 / 67%);
 }
 
 .did-you-mean {
@@ -255,6 +261,14 @@ navbar {
   .fa-shopping-cart {
     font-size: 35px;
   }
+
+  #msg-cont {
+    padding-top: 190px;
+  }
+
+  .msg {
+    margin: 0 95px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -292,6 +306,9 @@ navbar {
     left: 30px;
   }
 
+  .msg {
+    margin: 0 72px;
+  }
 }
 
 @media (min-width: 1440px) {
@@ -316,5 +333,9 @@ navbar {
   #search-input {
     height: 50px;
     width: 220px;
+  }
+
+  .msg {
+    margin: 0 125px;
   }
 }

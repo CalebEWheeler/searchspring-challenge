@@ -23,7 +23,6 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
 
 
           createItemTemplate( query, data );
-          
           resolve( data );
         })
         .catch(error => {
@@ -34,23 +33,7 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
   };
 
 
-const generateMessage = ( query, data ) => {
-  let message = "";
   
-  if(data.results.length === 0) {
-      let didYouMean = data.didYouMean.query;
-
-      message +=  `
-        <h4 class="msg">We didn't find any results for ${query}, did you mean <span class="did-you-mean" value="${didYouMean}">"${didYouMean}"</span>?</h4>
-      `;
-    }
-    else {
-      message += `
-      <h4 class="msg">Search results for ${data.breadcrumbs[0].filterValue}</h4>
-      `
-    }
-    $('#msg-cont').html(message);
-}   
 
 
 //Function that takes in the retrieved data and loops through and builds an HTML template for each result that is then injected into my grid element
@@ -101,6 +84,38 @@ const generateMessage = ( query, data ) => {
       window.scroll({top: 0});
   }
 
+  //This function will generate a message to be displayed in the HTML depending on if the user is on the home page, or has done a search
+  const generateMessage = ( query, data ) => {
+    let message = "";
+  
+    //If/Else utilized to determine what message to generate depending on passed query and data value
+    if( query === '#beach#!') {
+      message += `
+        <h3 class="msg">Welcome to Island Native, you can search our merchandise for all of your beach needs. <br><br>Off season items available!</h3>
+      `;
+      //This if statement will remove the homepage message if the currentPage value is greater than 1
+      if(data.pagination.currentPage > 1) {
+        message = "";
+      }
+    }
+    else {
+      if(data.results.length === 0) {
+        let didYouMean = data.didYouMean.query;
+
+        message +=  `
+          <h4 class="msg">We didn't find any results for ${query}, did you mean <span class="did-you-mean" value="${didYouMean}">"${didYouMean}"</span>?</h4>
+        `;
+      }
+      else {
+        message += `
+        <h4 class="msg">Search results for ${data.breadcrumbs[0].filterValue}</h4>
+        `;
+      }
+    
+    }
+    $('#msg-cont').html(message);
+  } 
+
   //This function will first display the pagination container, set the values of the pagination elements, then go through various conditionals to properly hide and show the pagination elements depending on the values of the previousPage, currentPage, and nextPage values retrieved from the API
   const showPaginationLogic = ( pagination ) => {
 
@@ -120,21 +135,21 @@ const generateMessage = ( query, data ) => {
     
   }
 
-  
+//These functions and event listeners are made available after the document is in a ready state  
 $(document).ready(() => {
 
   //Default items displayed on page on load
   const homepage = () => {
-    searchInput = 'beach';
+    searchInput = '#beach#!';
     $('#search-input').val("");
     getItems( searchInput, 1 );
+    
   }
-
   homepage();
 
-  $('.logo').click(() => {
-    homepage();
-  })
+  //On click event listener to call 'homepage()'
+  $('.logo').click(() => { homepage(); })
+
   //Event listener to register when a user clicks enter in the search input field to search for items
   $('#search-input').keyup((event) => {
     //Hide pagination-cont for when a user makes another search
@@ -159,6 +174,7 @@ $(document).ready(() => {
     getItems( searchInput, 1 );
   });
 
+
   //Pagination handling
   $('#previous-page').click(() => {
     let currentPage = ( $('#page-number').val() * 1);
@@ -171,25 +187,18 @@ $(document).ready(() => {
     currentPage++;
     getItems( searchInput, currentPage );
   })
-  
-  
 
+  //Cart functionality
+  let itemsInCart = 0;
+  $(document).on('click', '.add-to-cart', () => {
+    //onclick add a value of 1 to the 'span' element with the parent element that has a class of cart and allow it to increment with each click. Also add the class of 'cart-count' if the value is 0.
+
+    itemsInCart++;
+    $('#cart-count').attr('class', 'cart-count').text(itemsInCart);
+  })
 }) 
 
-
-
-
-
-//Cart functionality
-let itemsInCart = 0;
-$(document).on('click', '.add-to-cart', () => {
-  //onclick add a value of 1 to the 'span' element with the parent element that has a class of cart and allow it to increment with each click. Also add the class of 'cart-count' if the value is 0.
-
-  itemsInCart++;
-  $('#cart-count').attr('class', 'cart-count').text(itemsInCart);
-})
-
-$('#clear-cart').click(() => {
-  itemsInCart = 0;
-  $('#cart-count').removeAttr('class', 'cart-count').text("");
-})
+// $('#clear-cart').click(() => {
+//   itemsInCart = 0;
+//   $('#cart-count').removeAttr('class', 'cart-count').text("");
+// })
