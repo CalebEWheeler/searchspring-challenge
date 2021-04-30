@@ -213,14 +213,15 @@ $(document).ready(() => {
 
 
   //Pagination handling
-  $('.previous-page').click(() => {
+  $(document).on('click', '.previous-page', () => {
     let currentPage = ( $('.page-number').val() * 1);
     currentPage--;
     getItems( searchInput, currentPage );
   })
 
-  $('.next-page').click(() => {
+  $(document).on('click', '.next-page', () => {
     let currentPage = ( $('.page-number').val() * 1);
+    console.log(currentPage);
     currentPage++;
     getItems( searchInput, currentPage );
   })
