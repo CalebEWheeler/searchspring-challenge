@@ -19,6 +19,7 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
           //If the totalPages are greater than 1
           let pagination = data.pagination;
           
+          //Added this to fix a minor bug when searhching for towels from the homepage
           $('.pagination-cont').hide();
           if(pagination.totalPages > 1) showPaginationLogic( pagination );
 
