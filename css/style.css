@@ -253,12 +253,7 @@
   .prev-next-cont {
     width: 45px;
     border-radius: 12px;
-    transition: transform .2s ease;
-  }
-
-  .prev-next-cont:hover {
-    background-color:rgb(255 255 255 / 100%);
-    transform: scale(1.1);
+    
   }
 
   .pagination-btn {
@@ -267,7 +262,15 @@
     background-color: rgb(255 255 255 / 80%);
     border-radius: 12px;
     border: 2px solid #0000002b;
+    transition: transform .2s ease;
   }
+
+  .pagination-btn:hover {
+    background-color:rgb(255 255 255 / 100%);
+    transform: scale(1.1);
+  }
+
+  
 
   .page-number {
     margin: 0;
