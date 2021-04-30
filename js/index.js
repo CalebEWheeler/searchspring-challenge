@@ -102,7 +102,7 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
         let didYouMean = data.didYouMean.query;
 
         message +=  `
-          <h4 class="msg">We didn't find any results for ${query}, did you mean <span class="did-you-mean" value="${didYouMean}">"${didYouMean}"</span>?</h4>
+          <h4 class="msg">We didn't find any results for ${query}, did you mean <span class="did-you-mean" data-id="${didYouMean}">"${didYouMean}"</span>?</h4>
         `;
       }
       else {
@@ -164,8 +164,10 @@ $(document).ready(() => {
   }
   homepage();
 
+
   //On click event listener to call 'homepage()'
   $('.logo').click(() => { homepage(); })
+
 
   //Event listener to register when a user clicks enter in the search input field to search for items
   $('#search-input').keyup((event) => {
@@ -184,12 +186,23 @@ $(document).ready(() => {
     getItems( searchInput, 1 );
   })
 
+
   //Handle other searches based on click events on defined tab values in the navbar
   $(document).on("click", ".search-term", function() {
     searchInput = $(this).data("id");
     $('#search-input').val(searchInput);
     getItems( searchInput, 1 );
   });
+
+
+  //Cart functionality
+  let itemsInCart = 0;
+  $(document).on('click', '.add-to-cart', () => {
+    //onclick add a value of 1 to the 'span' element with the parent element that has a class of cart and allow it to increment with each click. Also add the class of 'cart-count' if the value is 0.
+
+    itemsInCart++;
+    $('#cart-count').attr('class', 'cart-count').text(itemsInCart);
+  })
 
 
   //Pagination handling
@@ -205,15 +218,15 @@ $(document).ready(() => {
     getItems( searchInput, currentPage );
   })
 
-  //Cart functionality
-  let itemsInCart = 0;
-  $(document).on('click', '.add-to-cart', () => {
-    //onclick add a value of 1 to the 'span' element with the parent element that has a class of cart and allow it to increment with each click. Also add the class of 'cart-count' if the value is 0.
+  //Event listener to handle if the API can't match the search query and has a 'did-you-mean' value
+  $(document).on("click", ".did-you-mean", function() {
+    searchInput = $(this).data("id");
+    $('.did-you-mean').val(searchInput);
+    getItems( searchInput, 1 );
+  });
 
-    itemsInCart++;
-    $('#cart-count').attr('class', 'cart-count').text(itemsInCart);
-  })
 
+  //Event listener to handle going to the homepage when a user clicks on the logo in the footer
   $('.logo-footer').click(() => {
     homepage();
   })
