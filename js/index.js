@@ -119,19 +119,19 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
   //This function will first display the pagination container, set the values of the pagination elements, then go through various conditionals to properly hide and show the pagination elements depending on the values of the previousPage, currentPage, and nextPage values retrieved from the API
   const showPaginationLogic = ( pagination ) => {
 
-    $('#pagination-cont').show();
-    $('#previous-page').hide();
+    $('.pagination-cont').show();
+    $('.previous-page').hide();
 
     //Here I set the values of the pagination elements
-    $('#previous-page').val(pagination.previousPage);
-    $('#page-number').val(pagination.currentPage).text(pagination.currentPage);
-    $('#next-page').val(pagination.nextPage);
+    $('.previous-page').val(pagination.previousPage);
+    $('.page-number').val(pagination.currentPage).text(pagination.currentPage);
+    $('.next-page').val(pagination.nextPage);
 
     //Conditionals to handle hiding and showing the 'previous-page and 'next-page' pagination buttons depending on values retrieved from the API
-    if(pagination.previousPage !== 0) $('#previous-page').show();
+    if(pagination.previousPage !== 0) $('.previous-page').show();
 
-    $('#next-page').show();
-    if(pagination.nextPage === 0) $('#next-page').hide();
+    $('.next-page').show();
+    if(pagination.nextPage === 0) $('.next-page').hide();
     
   }
 
@@ -153,7 +153,7 @@ $(document).ready(() => {
   //Event listener to register when a user clicks enter in the search input field to search for items
   $('#search-input').keyup((event) => {
     //Hide pagination-cont for when a user makes another search
-    $('#pagination-cont').hide();
+    $('.pagination-cont').hide();
     if(event.keyCode === 13) {
     searchInput = $('#search-input').val();
     getItems( searchInput, 1 );
@@ -162,7 +162,7 @@ $(document).ready(() => {
   //Event listener to register when a user clicks the search-submit button or tabs over and clicks enter to search for items
   $('#search-submit').click(() => {
     //Hide pagination-cont for when a user makes another search
-    $('#pagination-cont').hide();
+    $('.pagination-cont').hide();
     searchInput = $('#search-input').val();
     getItems( searchInput, 1 );
   })
@@ -176,14 +176,14 @@ $(document).ready(() => {
 
 
   //Pagination handling
-  $('#previous-page').click(() => {
-    let currentPage = ( $('#page-number').val() * 1);
+  $('.previous-page').click(() => {
+    let currentPage = ( $('.page-number').val() * 1);
     currentPage--;
     getItems( searchInput, currentPage );
   })
 
-  $('#next-page').click(() => {
-    let currentPage = ( $('#page-number').val() * 1);
+  $('.next-page').click(() => {
+    let currentPage = ( $('.page-number').val() * 1);
     currentPage++;
     getItems( searchInput, currentPage );
   })

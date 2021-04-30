@@ -204,7 +204,7 @@ navbar {
 }
 
 /* PAGINATION */
-#pagination-cont {
+.pagination-cont {
   display: flex;
   position: relative;
   align-items: center;
@@ -213,7 +213,7 @@ navbar {
   
 }
 
-#pagination-cont>div {
+.pagination-cont>div {
   text-align: center;
   width: 40px;
   height: 20px;
@@ -226,7 +226,7 @@ navbar {
   border: 2px solid black;
 }
 
-#page-number {
+.page-number {
   margin: 0;
   height: 100%;
   width: 100%;
