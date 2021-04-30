@@ -101,7 +101,7 @@ const baseUrl = "https://scmq7n.a.searchspring.io/api/search/search.json";
       
       
 
-      if(data.results.length === 0 && Object.keys(data).includes('didYouMean') === false) {
+      if(data.results.length === 0 && !Object.keys(data).includes('didYouMean')) {
         message += `
           <h4 class="msg">Sorry we didn't find any results for ${query}, try searching a different value...
         `;
